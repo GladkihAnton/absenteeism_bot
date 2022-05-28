@@ -1,0 +1,49 @@
+version: "3.3"
+
+services:
+  nginx:
+    build: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    networks:
+      - absenteeism_network
+
+  bot:
+    build:
+      dockerfile: bot/Dockerfile
+      context: .
+    command: python main.py
+    volumes:
+      - ./bot:/code
+    env_file:
+      - bot/conf/.env
+    depends_on:
+      - main_db
+      - redis
+    networks:
+      - absenteeism_network
+
+  main_db:
+    image: postgres:13.2
+    env_file:
+      - .env.db
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
+      interval: 5s
+      retries: 5
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - absenteeism_network
+
+  redis:
+    image: redis:6.2.4
+    networks:
+      - absenteeism_network
+
+networks:
+  absenteeism_network:
+    external:
+      name: absenteeism_network
