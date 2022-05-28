@@ -3,33 +3,32 @@ CREATE SCHEMA "absence";
 
 CREATE TABLE absence.office
 (
-    id   serial primary key,
-    name varchar
+    id   SERIAL PRIMARY KEY,
+    name VARCHAR
 );
 
 
 CREATE TABLE absence.role
 (
-    id   serial primary key,
-    name varchar not null
+    id   serial PRIMARY KEY,
+    name VARCHAR NOT NULL
 );
 
 
 CREATE TABLE absence.user
 (
-    telegram_user_id int primary key,
-    name             varchar,
-    role_id          int references absence.role (id),
-    office_id        int references absence.office (id)
+    telegram_user_id  INT PRIMARY KEY,
+    name              VARCHAR NOT NULL,
+    role_id           INT REFERENCES absence.role (id) NOT NULL,
+    office_id         INT REFERENCES absence.office (id) NOT NULL
 );
-CREATE INDEX user_telegram_user_id_ix ON absence.user (telegram_user_id);
 
 
 CREATE TABLE absence.absence
 (
     id               serial primary key,
-    message          varchar,
-    date             date,
-    telegram_user_id int references absence.user (telegram_user_id)
+    message          VARCHAR NOT NULL,
+    date             DATE NOT NULL,
+    telegram_user_id INT REFERENCES absence.user (telegram_user_id) NOT NULL
 );
 CREATE INDEX absence_telegram_user_id ON absence.absence (telegram_user_id);

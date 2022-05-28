@@ -1,9 +1,8 @@
 from contextlib import asynccontextmanager
 
+from conf.config import settings
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-
-from conf.config import settings
 
 engine = create_async_engine(
     settings.ASYNC_DATABASE_URL, pool_size=50, max_overflow=99, pool_pre_ping=True
