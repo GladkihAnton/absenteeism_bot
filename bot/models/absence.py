@@ -12,5 +12,5 @@ class Absence(Base):
     message: Column = Column(String, nullable=False)
 
     telegram_user_id: Column = Column(
-        String, ForeignKey(User.telegram_user_id), nullable=False
+        Integer, ForeignKey(User.telegram_user_id), nullable=False
     )

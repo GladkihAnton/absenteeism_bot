@@ -49,3 +49,8 @@ class Absence(models.Model):
         db_table = '"absence"."absence"'
         verbose_name = 'Пропуск'
         verbose_name_plural = 'Пропуски'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['telegram_user_id', 'date'], name='unique_absence_per_day'
+            )
+        ]
