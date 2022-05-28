@@ -4,7 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from conf.config import settings
-from bot.handlers.auth import register_handlers_auth
+from handlers.auth import register_handlers_auth
 
 
 async def main():
