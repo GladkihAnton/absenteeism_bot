@@ -23,14 +23,20 @@ class Role(models.Model):
         verbose_name = 'Роль'
         verbose_name_plural = 'Роли'
 
+    def __str__(self):
+        return self.name
+
 
 class Office(models.Model):
     name = models.CharField(max_length=256, null=False, blank=False)
 
     class Meta:
         db_table = '"absence"."office"'
-        verbose_name = 'Роль'
-        verbose_name_plural = 'Роли'
+        verbose_name = 'Офис'
+        verbose_name_plural = 'Офисы'
+
+    def __str__(self):
+        return self.name
 
 
 class Absence(models.Model):

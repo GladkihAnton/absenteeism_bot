@@ -10,7 +10,7 @@
     "model": "absence.role",
     "pk": 2,
     "fields": {
-      "name": "worker"
+      "name": "employee"
     }
   }
 ]

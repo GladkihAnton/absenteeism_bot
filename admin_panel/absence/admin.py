@@ -19,6 +19,14 @@ class OfficeAdmin(admin.ModelAdmin):
 
 
 class TelegramUserAdmin(admin.ModelAdmin):
+    list_display = ('name', 'role_name', 'office_name', 'active')
+
+    def office_name(self, obj):
+        return obj.office and obj.office.name
+
+    def role_name(self, obj):
+        return obj.role and obj.role.name
+
     def has_add_permission(self, request, obj=None):
         return False
 
