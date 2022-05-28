@@ -1,11 +1,28 @@
 version: "3.3"
 
 services:
+  admin:
+    build:
+      dockerfile: admin_panel/Dockerfile
+      context: .
+    command: ../scripts/web/startup.sh -mm -m -l
+    volumes:
+      - ./admin_panel:/code
+    env_file:
+      - admin_panel/.env
+    depends_on:
+      - main_db
+      - redis
+    networks:
+      - absenteeism_network
+
   nginx:
     build: nginx
     container_name: nginx
     ports:
       - "80:80"
+    depends_on:
+      - admin
     networks:
       - absenteeism_network
 
