@@ -8,9 +8,8 @@ class Absence(Base):
     __table_args__ = {"schema": DEFAULT_SCHEMA}
 
     id: Column = Column(Integer, primary_key=True, index=True)
-
-    message: Column = Column(String, nullable=False)
     date: Column = Column(Date, nullable=False)
+    message: Column = Column(String, nullable=False)
 
     telegram_user_id: Column = Column(
         String, ForeignKey(User.telegram_user_id), nullable=False
