@@ -1,0 +1,2 @@
+ADMIN = "admin"
+WORKER = "worker"

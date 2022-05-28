@@ -19,8 +19,8 @@ CREATE TABLE absence.user
 (
     telegram_user_id  INT PRIMARY KEY,
     name              VARCHAR NOT NULL,
-    role_id           INT REFERENCES absence.role (id) NOT NULL,
-    office_id         INT REFERENCES absence.office (id) NOT NULL,
+    role_id           INT REFERENCES absence.role (id),
+    office_id         INT REFERENCES absence.office (id),
     active            BOOLEAN DEFAULT FALSE NOT NULL
 );
 
