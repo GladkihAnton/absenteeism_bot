@@ -1,5 +1,3 @@
-version: "3.3"
-
 services:
   admin:
     build:
@@ -62,5 +60,4 @@ services:
 
 networks:
   absenteeism_network:
-    external:
-      name: absenteeism_network
+    name: absenteeism_network
