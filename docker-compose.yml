@@ -33,6 +33,8 @@ services:
       interval: 5s
       retries: 5
     restart: always
+    volumes:
+      - ./scripts/postgres:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     networks:
