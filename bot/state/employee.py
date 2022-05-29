@@ -1,5 +1,5 @@
-from aiogram.dispatcher.filters.state import State, StatesGroup
+from state.admin_employee import BaseAdminEmployeeState
 
 
-class EmployeeState(StatesGroup):
-    START = State()
+class EmployeeState(BaseAdminEmployeeState):
+    pass

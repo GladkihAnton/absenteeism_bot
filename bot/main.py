@@ -4,7 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from conf.config import settings
-from handlers.admin import register_handlers_admin
+from handlers.admin_employee import register_handlers_admin_employee
 from handlers.auth import register_handlers_auth
 
 
@@ -19,7 +19,7 @@ async def main():
     dp = Dispatcher(bot, storage=storage)
 
     register_handlers_auth(dp)
-    register_handlers_admin(dp)
+    register_handlers_admin_employee(dp)
 
     await dp.skip_updates()
     await dp.start_polling()
