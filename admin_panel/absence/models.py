@@ -43,7 +43,7 @@ class Absence(models.Model):
     date = models.DateField(null=False)
     message = models.CharField(max_length=256, null=False, blank=False)
 
-    telegram_user = models.ForeignKey(TelegramUser, on_delete=models.PROTECT, db_index=True)
+    telegram_user = models.ForeignKey(TelegramUser, on_delete=models.PROTECT, db_index=True, related_name='absences')
 
     class Meta:
         db_table = '"absence"."absence"'
@@ -54,3 +54,10 @@ class Absence(models.Model):
                 fields=['telegram_user_id', 'date'], name='unique_absence_per_day'
             )
         ]
+
+
+class TelegramUserAbsences(TelegramUser):
+    class Meta:
+        proxy = True
+        verbose_name = 'Отчет о прогуле'
+        verbose_name_plural = 'Отчет по прогулам'
