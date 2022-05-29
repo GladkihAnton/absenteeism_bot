@@ -17,7 +17,7 @@ from template.loader import render_template
 
 
 async def cmd_start(message: Message, state: FSMContext):
-    filters = get_user_filters(user_id=message.chat.id)
+    filters = get_user_filters(telegram_user_id=message.from_user.id)
     async with async_db_connection() as conn:
         user: Optional[User] = (await get_user(conn, filters, with_role=True)).scalar()
         if not user:
